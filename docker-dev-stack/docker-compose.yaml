@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+   dbpgsql:
+      image: postgres:latest
+      restart: unless-stopped
+      container_name: iiot
+      networks:
+         dbpgsql:
+            aliases:
+               - dbpgsql
+               - database
+      ports:
+         - 127.0.0.1:5432:5432
+      environment:
+         - TX=UTC
+         - POSTGRES_DB=iiot
+         - POSTGRES_USER=iiot-db-admin
+         - POSTGRES_PASSWORD=ZyBWCdmES859x7
+      command: postgres -c listen_addresses='*'
+
+
+networks:
+   database:
+   dbpgsql:
+   dbmssql:
+volumes:
+   pgsql:
